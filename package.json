@@ -4,13 +4,13 @@
   "description": "This is a sample project",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test"
   },
   "keywords": [
     "quiz"
   ],
   "author": "Jinto Jose <jintoppy@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-uglify": "^0.5.0",
