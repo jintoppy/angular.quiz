@@ -16,7 +16,7 @@ module.exports = function(grunt) {
       },
       main: {
         files: {
-          'dist/app.min.js': ['<%= concat.lazyload.dest %>']
+          'dist/app.min.js': ['<%= concat.main.dest %>']
         }
       }
     },
