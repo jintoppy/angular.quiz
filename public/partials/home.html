@@ -1,2 +1,8 @@
 Home page
-<a ui-sref="widget">Quiz application</a>
+{{main.name}}
+<ul>
+	<li ng-repeat="data in quizData">
+		{{data.question}}
+	</li>
+</ul>
+<a ui-sref="search">Quiz application</a>
