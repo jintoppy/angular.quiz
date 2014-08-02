@@ -9,12 +9,27 @@ angular.module('quiz').
 		$stateProvider
 			.state('home', {
 				url: "/home",
-				templateUrl: "partials/home.html"
+				templateUrl: "partials/home.html",
+				authenticate: true
 			})
 			.state('search', {
 				url: "/search",
-				templateUrl: "partials/search.html"
+				templateUrl: "partials/search.html",
+				authenticate: true
+			})
+			.state('login', {
+				url: "/login",
+				templateUrl: "partials/login.html",
+				authenticate: false
 			});
 		$urlRouterProvider.when('', '/home');
-		$urlRouterProvider.otherwise('/home');
+		$urlRouterProvider.otherwise('/login');
+	}]).
+	run(['$rootScope', '$state', 'authService', function($rootScope, $state, authService){
+		$rootScope.$on('$stateChangeStart', function(event, toState){
+			if(toState.authenticate && !authService.isAuthenticated()){
+				$state.transitionTo('login');
+				event.preventDefault();
+			}
+		});
 	}]);
