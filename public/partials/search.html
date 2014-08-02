@@ -1,0 +1,10 @@
+<a ui-sref="home">Go to Home page</a>
+<div style="clear:both"></div>
+<div infinite-scroll='getSearchResults()'> 
+	This is the search item. You can filter with this text box 
+	<input ng-model="searchfilter">
+
+	<div style="height:100px" ng-repeat="item in searchitems | filter:searchfilter track by $index">
+		{{item}}
+	</div>
+</div>

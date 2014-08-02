@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     concat: {
       options: {
       },
-      lazyload: {
+      main: {
         src: ['public/js/**/*.js'],
         dest: 'dist/app.js'
       }
@@ -14,7 +14,7 @@ module.exports = function(grunt) {
       options: {
         banner: '/*! Created by <%= pkg.author %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
-      lazyload: {
+      main: {
         files: {
           'dist/app.min.js': ['<%= concat.lazyload.dest %>']
         }
@@ -37,6 +37,11 @@ module.exports = function(grunt) {
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint']
+    },
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
     }
   });
 
@@ -44,7 +49,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-karma');
 
-  grunt.registerTask('default', ['jshint', 'concat:lazyload','concat:widget', 'uglify']);
+  grunt.registerTask('build', ['jshint', 'concat','uglify']);
+  grunt.registerTask('test', ['jshint', 'karma:unit']);
 
 };
