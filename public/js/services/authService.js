@@ -4,7 +4,17 @@ angular.module('quiz.services').
 			return false;
 		}
 
+		function login(){
+
+		}
+
+		function register(){
+
+		}
+
 		return{
-			isAuthenticated: isAuthenticated
+			isAuthenticated: isAuthenticated,
+			login: login,
+			register: register
 		};
 	}]);

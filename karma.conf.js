@@ -5,9 +5,13 @@ module.exports = function(config) {
 		frameworks: ['jasmine'],
 
 		// List of files / patterns to load in the browser
-		files: ['public/js/app.js',
+		files: [
+		'public/lib/angular1.2.16.min.js',
+		'public/lib/angular-ui-router.min.js',
+		'tests/angular-mocks.js',
+		'public/js/app.js',
 		'public/js/**/*.js',
-		'tests/**/*.js'],
+		'tests/**/*.spec.js'],
 
 		// Test results reporter to use
 		// Possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
@@ -42,6 +46,6 @@ module.exports = function(config) {
 
 		// Continuous Integration mode
 		// If true, it capture browsers, run tests and exit
-		singleRun: true
+		singleRun: false
 	});
 };
