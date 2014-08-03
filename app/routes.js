@@ -4,7 +4,12 @@ module.exports = function(app) {
 	app.route('/').get(core.index);
 
 	app.route('/login').post(core.login);
+	app.route('/logout').post(core.logout);
 
 	app.route('/getQuizData').get(core.getQuizData);
+
+	app.route('/submitAnswer').post(core.submitAnswer);
+
+	app.route('/getResults').get(core.getResults);
 
 };

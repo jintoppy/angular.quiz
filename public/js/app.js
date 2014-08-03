@@ -20,17 +20,7 @@ angular.module('quiz').
 			.state('quiz', {
 				url: "/quiz",
 				templateUrl: "partials/quiz.html",
-				authenticate: true,
-				quizService: 'quizService',
-				resolve: {
-					quizData: function(quizService){
-						return quizService.getQuizData();	
-					}
-				},
-				controller: ['$scope', 'quizData',function($scope,quizData){
-					$scope.quizData = quizData;
-					$scope.currentQuestionIndex=0;
-				}]
+				authenticate: true
 			})
 			.state('search', {
 				url: "/search",

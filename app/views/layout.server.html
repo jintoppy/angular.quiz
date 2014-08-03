@@ -9,8 +9,11 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body class="ng-cloak" ng-controller="quizController">
+	<header>
+		<a href="#" ng-show="loggedIn" ng-click="logout($event)">Logout</a>
+	</header>
 	<section class="content">
-		<section class="container">
+		<section class="container">			
 			{% block content %}{% endblock %}
 		</section>
 	</section>

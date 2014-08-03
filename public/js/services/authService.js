@@ -5,25 +5,37 @@ angular.module('quiz.services').
 			return isLoggedIn;
 		}
 
-		function loginSuccessCallback(){
+		function successCallback(){
 			isLoggedIn = true;
 			$state.transitionTo('home');
+			$rootScope.$emit('login');
 		}
 
-		function login(){
+		function login(username, password){
 			$http.post('/login', {
-				username: 'jintoppy@gmail.com',
-				password: '1234'
+				username: username,
+				password: password
 			}).
-			success(loginSuccessCallback);
+			success(successCallback);
 		}
 
-		function register(){
+		function register(username, password){
+			$http.post('/signup', {
+				username: username,
+				password: password
+			}).
+			success(successCallback);
 
 		}
 
 		function logout(){
 			isLoggedIn = false;
+			$http.post('/logout').
+				success(function(){
+					$rootScope.$emit('logout');
+					$state.transitionTo('login');
+				});
+
 		}
 
 		return{

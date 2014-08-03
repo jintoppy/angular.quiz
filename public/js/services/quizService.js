@@ -10,8 +10,16 @@ angular.module('quiz.services').
 			return deferred.promise;
 		}
 
-		function submitAnswer(inputData){
-
+		function submitAnswer(questionId, selectedOption){
+			$http.post('/submitAnswer', 
+				{
+					id: questionId,
+					option: selectedOption
+				}
+				).
+				success(function(quizData){
+					deferred.resolve(quizData);
+				});
 		}
 
 		function getResult(){
