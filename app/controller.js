@@ -43,7 +43,6 @@ exports.login = function(req,res){
 	var username = req.body.username;
 	var password = req.body.password;
 	var user = _.where(users, {username: username, password: password});
-	console.log(user);
 	if(user && user.length>0){
 		req.session.regenerate(function(){
 			req.session.user = username;

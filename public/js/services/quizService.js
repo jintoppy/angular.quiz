@@ -24,22 +24,20 @@ angular.module('quiz.services').
 
 		function getResult(){
 
+			var deferred = $q.defer();
+			$http.get('/getResults').
+				success(function(resultData){
+					deferred.resolve(resultData);
+				});
+			return deferred.promise;
+
 		}
 
-		function getQuestionsWithAnswers(){
-
-		}
-
-		function finishQuiz(){
-
-		}
 
 		return {
 			getQuizData: getQuizData,
 			submitAnswer: submitAnswer,
-			getResult: getResult,
-			getQuestionsWithAnswers: getQuestionsWithAnswers,
-			finishQuiz: finishQuiz
+			getResult: getResult
 		};
 
 	}]);

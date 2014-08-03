@@ -1,3 +1,4 @@
 <div>
-	<div quiz-item question="currentQuestion" options="currentOptions" on-answer="submitAnswer(id,value)" id="currentQuestionId"></div>
+	<a href="#" ng-click="showResults($event)" ng-show="quizFinished">ShowResults</a>
+	<div ng-hide="quizFinished" quiz-item question="currentQuestion" options="currentOptions" on-answer="submitAnswer(id,value)" id="currentQuestionId"></div>
 </div>

@@ -1,0 +1,18 @@
+<div ng-repeat="result in results"> 
+	{{$index+1}}. {{result.question}}
+	<div class="answer-box pass" ng-if="result.isCorrect">
+		Correct:
+		{{result.userAnswer}}
+
+	</div>
+	<div class="answer-box fail" ng-if="!result.isCorrect">\
+		<div class="user-answer">
+			You answered incorrect:
+			{{result.userAnswer}}
+		</div>
+		<div class="correct-answer">
+			Correct Answer:
+			{{result.correctAnswer}}
+		</div>		
+	</div>
+</div>

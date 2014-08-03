@@ -22,14 +22,19 @@ angular.module('quiz').
 				templateUrl: "partials/quiz.html",
 				authenticate: true
 			})
-			.state('search', {
-				url: "/search",
-				templateUrl: "partials/search.html",
+			.state('result', {
+				url: "/result",
+				templateUrl: "partials/result.html",
 				authenticate: true
 			})
 			.state('login', {
 				url: "/login",
 				templateUrl: "partials/login.html",
+				authenticate: false
+			})
+			.state('register', {
+				url: "/register",
+				templateUrl: "partials/register.html",
 				authenticate: false
 			});
 		$urlRouterProvider.when('', '/home');
