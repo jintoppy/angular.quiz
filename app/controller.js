@@ -65,7 +65,12 @@ exports.logout = function(req,res){
 };
 
 var quizData = require('../app/data/quiz1.json');
+
 exports.getQuizData = function(req, res){
-	var quizWithoutAnswers = _.omit(quizData, 'answer');
-	res.json(quizWithoutAnswers);
+	var quizDataArr = _.toArray(quizData);
+	var quizDataArrWithoutAnswer = _.map(quizDataArr, function(data){
+		return _.omit(data, 'answer');
+	});
+	console.log(quizDataArrWithoutAnswer);
+	res.json(quizDataArrWithoutAnswer);
 };

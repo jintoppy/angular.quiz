@@ -5,7 +5,7 @@ angular.module('quiz.services').
 			var deferred = $q.defer();
 			$http.get('/getQuizData').
 				success(function(quizData){
-					deferred.resolve(_.toArray(quizData));
+					deferred.resolve(quizData);
 				});
 			return deferred.promise;
 		}
