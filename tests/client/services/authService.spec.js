@@ -1,5 +1,8 @@
 describe('authService', function(){
 	var authService, $rootScope;
+
+	beforeEach(module('ui.router'));
+	beforeEach(module('underscore'));
 	beforeEach(module('quiz.services'));
 
 	beforeEach(inject(function(_$rootScope_,_authService_){

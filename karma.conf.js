@@ -6,6 +6,8 @@ module.exports = function(config) {
 
 		// List of files / patterns to load in the browser
 		files: [
+		'public/lib/jquery.js',
+		'public/lib/underscore-min.js',
 		'public/lib/angular1.2.16.min.js',
 		'public/lib/angular-ui-router.min.js',
 		'tests/angular-mocks.js',

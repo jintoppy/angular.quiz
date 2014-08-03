@@ -28,7 +28,6 @@ angular.module('quiz').
 					}
 				},
 				controller: ['$scope', 'quizData',function($scope,quizData){
-					console.log(quizData);
 					$scope.quizData = quizData;
 					$scope.currentQuestionIndex=0;
 				}]
