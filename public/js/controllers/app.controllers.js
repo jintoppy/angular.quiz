@@ -2,20 +2,24 @@ angular.module('quiz.controllers').
 	controller('quizController', ['$scope','quizService', 'authService', '$state', '$rootScope',
 		function($scope, quizService,authService,$state, $rootScope){
 
+		var quizDataPromise;
+
+		//scope methods
 		$scope.startQuiz = startQuiz;
 		$scope.submitAnswer = submitAnswer;
 		$scope.login = login;
 		$scope.logout = logout;
+		$scope.register = register;
 		$scope.showResults = showResults;
+
 
 		//initialization
 		(function initialize(){
 			$scope.quizData = [];
-			$scope.username="";
-			$scope.password = "";
 			$scope.loggedIn = false;
 			$scope.quizFinished = false;
-			quizService.getQuizData().then(function(data){
+			quizDataPromise = quizService.getQuizData();
+			quizDataPromise.then(function(data){
 				$scope.quizData = data;
 				$scope.currentQuestionIndex=0;
 			});
@@ -28,17 +32,22 @@ angular.module('quiz.controllers').
 				$scope.$digest();
 			}
 		});
-		$rootScope.$on('login', function(){
+		$rootScope.$on('login', function(event,user){
 			$scope.loggedIn = true;
-			if(!$scope.$$phase) {
-				$scope.$digest();
-			}
+			$scope.username = user;
 		});
 
 		//all scope functions
 		function login(event, username, password){
 			event.preventDefault();
+			$scope.username = username;
 			authService.login(username,password);
+		}
+
+		function register(event, username, password){
+			event.preventDefault();
+			$scope.username = username;
+			authService.register(username,password);
 		}
 
 		function logout(event){
@@ -48,20 +57,24 @@ angular.module('quiz.controllers').
 
 		function showResults(event){
 			event.preventDefault();
-			quizService.getResult().then(function(data){
-				$scope.results = data;
+			quizService.getResult().then(function(result){
+				$scope.results = result.data;
+				$scope.mark = result.mark;
 				$state.transitionTo('result');
 			});
 		}
 
 		function startQuiz(){
-			$scope.currentQuestionIndex=0;
-			setCurrentQuestion();
-			$state.transitionTo('quiz');
+			quizDataPromise.then(function(){
+				$scope.currentQuestionIndex=0;
+				setCurrentQuestion();
+				$state.transitionTo('quiz');
+			});
+			
 		}
 
 		function submitAnswer(questionId, option){
-			quizService.submitAnswer(questionId,"A");
+			quizService.submitAnswer(questionId,option);
 			if($scope.currentQuestionIndex < $scope.quizData.length-1){
 				$scope.currentQuestionIndex++;
 				setCurrentQuestion();

@@ -11,7 +11,8 @@ angular.module('quiz.services').
 		}
 
 		function submitAnswer(questionId, selectedOption){
-			$http.post('/submitAnswer', 
+			var deferred = $q.defer();
+			$http.post('/submitAnswer',
 				{
 					id: questionId,
 					option: selectedOption
@@ -20,17 +21,28 @@ angular.module('quiz.services').
 				success(function(quizData){
 					deferred.resolve(quizData);
 				});
+			return deferred.promise;			
+		}
+
+		function resultCallback(deferred,resultData){
+			var totalQuestions = resultData.length;
+			var totalCorrectAnswers = _.where(resultData,{isCorrect: true}).length;
+			var totalPercentage = (totalCorrectAnswers/totalQuestions)*100;
+			var resultInfo = {
+				mark: totalPercentage,
+				data: resultData
+			};
+			deferred.resolve(resultInfo);
 		}
 
 		function getResult(){
 
 			var deferred = $q.defer();
 			$http.get('/getResults').
-				success(function(resultData){
-					deferred.resolve(resultData);
+				success(function(data){
+					resultCallback(deferred,data);
 				});
 			return deferred.promise;
-
 		}
 
 

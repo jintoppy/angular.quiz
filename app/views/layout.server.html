@@ -7,10 +7,38 @@
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body class="ng-cloak" ng-controller="quizController">
+	<div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Quiz</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li ui-sref-active="active" ng-if="!loggedIn"><a ui-sref="login">Login</a></li>
+            <li ui-sref-active="active" ng-if="!loggedIn"><a ui-sref="register">Register</a></li>
+            <li ng-if="quizFinished"><a href="#" ng-click="showResults($event)">ShowResults</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          	<li ng-if="loggedIn">Hi {{username}}</li>
+            <li ng-if="loggedIn"><a href="#" ng-click="logout($event)">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 	<header>
-		<a href="#" ng-show="loggedIn" ng-click="logout($event)">Logout</a>
+		
 	</header>
 	<section class="content">
 		<section class="container">			
@@ -29,6 +57,6 @@
 	<script type="text/javascript" src="js/services/quizService.js"> </script>
 	<script type="text/javascript" src="js/services/authService.js"> </script>
 	<script type="text/javascript" src="js/directives/quizItem.js"> </script>
-	
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>

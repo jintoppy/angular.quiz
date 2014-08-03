@@ -1,11 +1,13 @@
-<div>
-	This is a quiz item
-	<div class="question">{{question}}</div>
-	<div class="options">
-		<label ng-repeat="curroption in options">
-         <input type="radio" name="option" ng-value="curroption.value" />		{{curroption.text}} 
-		</label
+<div class="quiz-item">
+	<h3>{{question}}</h3>
+	<div class="quiz-item-box">
+		<div class="quiz-item-options">
+			<label class="option-item" ng-repeat="curroption in options">
+	         <input type="radio" ng-model="$parent.answer" name="option" ng-value="curroption.value" />		{{curroption.text}} 
+			</label>
 
+		</div>
+		<a href="#"  class="btn btn-lg btn-primary btn-block" ng-click="submitAnswer($event)">Submit Answer</a>
 	</div>
-	<a href="#" ng-click="submitAnswer($event)">Submit Answer</a>
+	
 </div>

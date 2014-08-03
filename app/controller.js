@@ -17,7 +17,7 @@ exports.signup = function(req, res){
 	var username = req.body.username;
 	var password = req.body.password;
 	var user = _.where(users, {username: username});
-	if(user){
+	if(user && user.length>0){
 		res.status(403).send({
 			message: 'username taken'
 		});

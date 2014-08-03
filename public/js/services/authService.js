@@ -1,6 +1,6 @@
 angular.module('quiz.services').
 	factory('authService', ['$http', '$window', '$rootScope', '$state', function($http, $window, $rootScope, $state){
-		var isLoggedIn = false;
+		var isLoggedIn = false, usernameTemp;
 		function isAuthenticated(){
 			return isLoggedIn;
 		}
@@ -8,10 +8,11 @@ angular.module('quiz.services').
 		function successCallback(){
 			isLoggedIn = true;
 			$state.transitionTo('home');
-			$rootScope.$emit('login');
+			$rootScope.$emit('login', usernameTemp);
 		}
 
 		function login(username, password){
+			usernameTemp = username;
 			$http.post('/login', {
 				username: username,
 				password: password
@@ -20,6 +21,7 @@ angular.module('quiz.services').
 		}
 
 		function register(username, password){
+			usernameTemp = username;
 			$http.post('/signup', {
 				username: username,
 				password: password

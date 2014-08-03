@@ -11,11 +11,9 @@ angular.module('quiz.directives').
 
 			},
 			link: function(scope, element, attrs){
-				console.log(scope.question);
-				console.log(scope.options);
 				scope.submitAnswer = function(event){
 					event.preventDefault();
-					scope.submit({id:scope.id});
+					scope.submit({id:scope.id, value: scope.answer});
 				};
 			},
 			templateUrl: 'partials/directives/quiz-item.html'
