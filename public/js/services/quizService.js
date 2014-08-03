@@ -1,49 +1,12 @@
 angular.module('quiz.services').
-	factory('quizService', ['$http','$q', function($http, $q){
-		var quizData = [
-			{
-				"id": 0,
-				"question": "First question",
-				"options": [
-					{
-						"text": "A",
-						"value": "A"
-					},
-					{
-						"text": "B",
-						"value": "B"
-					},
-					{
-						"text": "C",
-						"value": "C"
-					}
-				]
-			},
-			{
-				"id": 1,
-				"question": "Second question",
-				"options": [
-					{
-						"text": "A",
-						"value": "A"
-					},
-					{
-						"text": "B",
-						"value": "B"
-					},
-					{
-						"text": "C",
-						"value": "C"
-					}
-				]
-			}
-		];
-
+	factory('quizService', ['$http','$q', '_', function($http, $q, _){
 
 		function getQuizData(){
 			var deferred = $q.defer();
-			deferred.resolve(quizData);
-			
+			$http.get('/getQuizData').
+				success(function(quizData){
+					deferred.resolve(_.toArray(quizData));
+				});
 			return deferred.promise;
 		}
 
@@ -59,11 +22,16 @@ angular.module('quiz.services').
 
 		}
 
+		function finishQuiz(){
+
+		}
+
 		return {
 			getQuizData: getQuizData,
 			submitAnswer: submitAnswer,
 			getResult: getResult,
-			getQuestionsWithAnswers: getQuestionsWithAnswers
+			getQuestionsWithAnswers: getQuestionsWithAnswers,
+			finishQuiz: finishQuiz
 		};
 
 	}]);

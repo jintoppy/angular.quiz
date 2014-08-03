@@ -6,7 +6,7 @@ module.exports = function(grunt) {
       options: {
       },
       main: {
-        src: ['public/js/**/*.js'],
+        src: ['public/js/app.js', 'public/js/**/*.js'],
         dest: 'dist/app.js'
       }
     },

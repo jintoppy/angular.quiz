@@ -1,5 +1,6 @@
 angular.module('quiz.controllers').
-	controller('quizController', ['$scope','quizService','$state', function($scope, quizService, $state){
+	controller('quizController', ['$scope','quizService', 'authService', '$state',
+		function($scope, quizService,authService,$state){
 		$scope.quizData = [];
 		$scope.name = "test";
 		quizService.getQuizData().then(function(data){
@@ -15,8 +16,18 @@ angular.module('quiz.controllers').
 
 		$scope.submitAnswer = function(questionId, option){
 			quizService.submitAnswer(questionId);
-			$scope.currentQuestionIndex++;
-			setCurrentQuestion();
+			if($scope.currentQuestionIndex < $scope.quizData.length-1){
+				$scope.currentQuestionIndex++;
+				setCurrentQuestion();
+			}
+			else if($scope.currentQuestionIndex === $scope.quizData.length-1){
+				quizService.finishQuiz();
+			}
+		};
+
+		$scope.login = function(event){
+			event.preventDefault();
+			authService.login();
 		};
 
 		//Utility functions

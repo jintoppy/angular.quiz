@@ -1,0 +1,43 @@
+[
+  {
+    "id":0,
+    "question":"Which is not an advantage of using closure",
+    "answer": "D",
+    "options" :  [
+      {
+        "text":"Prevent pollution of global scope",
+        "value":"A"
+      },
+      {
+        "text":"Encapsulation",
+        "value":"B"
+      },
+      {
+        "text":"Private properties and methods",
+        "value":"C"
+      },
+      {
+        "text":"Allow conditional use of 'strict mode'",
+        "value":"D"
+      }
+    ]
+  },
+  {
+    "id":1,
+    "question":"Second question",
+    "options":[
+      {
+        "text":"A",
+        "value":"A"
+      },
+      {
+        "text":"B",
+        "value":"B"
+      },
+      {
+        "text":"C",
+        "value":"C"
+      }
+    ]
+  }
+]

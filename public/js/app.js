@@ -1,11 +1,16 @@
 angular.module('quiz.services',[]);
 angular.module('quiz.controllers',[]);
 angular.module('quiz.directives',[]);
-angular.module('quiz',['ui.router', 'quiz.controllers',
+angular.module('underscore', []).
+	factory('_', function(){
+		return window._;
+	});
+	
+angular.module('quiz',['ui.router','underscore', 'quiz.controllers',
 	'quiz.directives', 'quiz.services']);
 
 angular.module('quiz').
-	config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+	config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
 		$stateProvider
 			.state('home', {
 				url: "/home",
@@ -15,7 +20,18 @@ angular.module('quiz').
 			.state('quiz', {
 				url: "/quiz",
 				templateUrl: "partials/quiz.html",
-				authenticate: true
+				authenticate: true,
+				quizService: 'quizService',
+				resolve: {
+					quizData: function(quizService){
+						return quizService.getQuizData();	
+					}
+				},
+				controller: ['$scope', 'quizData',function($scope,quizData){
+					console.log(quizData);
+					$scope.quizData = quizData;
+					$scope.currentQuestionIndex=0;
+				}]
 			})
 			.state('search', {
 				url: "/search",
