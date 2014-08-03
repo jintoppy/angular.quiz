@@ -1,27 +1,22 @@
 angular.module('quiz.directives').
 	directive('quizItem', [function(){
-		function submitAnswer(){
-			console.log('clicked submit');
-		}
 		return {
 			restrict: 'EA',
 			replace: true,
 			scope: {
+				question: '=',
+				id: '=',
+				options: '=',
+				submit: '&onAnswer'
+
 			},
 			link: function(scope, element, attrs){
-				scope.submitAnswer = submitAnswer;
-				scope.currentQuestion = "what is what?";
-				scope.curroptions = [
-					{
-						text: "A",
-						vale: 0
-					},
-					{
-						text: "B",
-						vale: 0
-					}
-				];
-
+				console.log(scope.question);
+				console.log(scope.options);
+				scope.submitAnswer = function(event){
+					event.preventDefault();
+					scope.submit({id:scope.id});
+				};
 			},
 			templateUrl: 'partials/directives/quiz-item.html'
 		};

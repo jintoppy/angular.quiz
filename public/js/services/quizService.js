@@ -2,12 +2,40 @@ angular.module('quiz.services').
 	factory('quizService', ['$http','$q', function($http, $q){
 		var quizData = [
 			{
+				"id": 0,
 				"question": "First question",
-				"options": ["a","b","c","d"]
+				"options": [
+					{
+						"text": "A",
+						"value": "A"
+					},
+					{
+						"text": "B",
+						"value": "B"
+					},
+					{
+						"text": "C",
+						"value": "C"
+					}
+				]
 			},
 			{
+				"id": 1,
 				"question": "Second question",
-				"options": ["a","b","c","d"]
+				"options": [
+					{
+						"text": "A",
+						"value": "A"
+					},
+					{
+						"text": "B",
+						"value": "B"
+					},
+					{
+						"text": "C",
+						"value": "C"
+					}
+				]
 			}
 		];
 

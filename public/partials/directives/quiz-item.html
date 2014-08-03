@@ -1,8 +1,11 @@
 <div>
 	This is a quiz item
-	<div class="question">{{currentQuestion}}</div>
+	<div class="question">{{question}}</div>
 	<div class="options">
-		<input type="radio" name="option" value="curroption.value" ng-repeat="curroption in curroptions">{{curroption.text}} </input><br/>
+		<label ng-repeat="curroption in options">
+         <input type="radio" name="option" ng-value="curroption.value" />		{{curroption.text}} 
+		</label
+
 	</div>
-	<a href="#" ng-click="submitAnswer()">Submit Answer</a>
+	<a href="#" ng-click="submitAnswer($event)">Submit Answer</a>
 </div>
