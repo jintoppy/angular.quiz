@@ -12,6 +12,11 @@ angular.module('quiz').
 				templateUrl: "partials/home.html",
 				authenticate: true
 			})
+			.state('quiz', {
+				url: "/quiz",
+				templateUrl: "partials/quiz.html",
+				authenticate: true
+			})
 			.state('search', {
 				url: "/search",
 				templateUrl: "partials/search.html",
